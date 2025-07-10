@@ -6,9 +6,12 @@ import { data } from "../data/data";
 
 export function getAsteroidDataByName(data, asteroidName) {
   // Your code goes here...
+  const info = data.asteroids.find(
+    (asteroid) => asteroid.name === asteroidName
+  );
+  return info;
 }
-
-
+console.log(getAsteroidDataByName(data, "101955 Bennu"));
 
 // === TEST YOURSELF ===
 // Once you're finished run the test with "npm run test-10"

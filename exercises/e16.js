@@ -1,19 +1,27 @@
 /**
  * Make sure to read the e16.md file!
- * For this exercise we want you to make a custom `find` method. 
+ * For this exercise we want you to make a custom `find` method.
  * In order to do this it is ok to use any type of FOR loops.
  * REQUIREMENT: A find function should
  * * Take an array of things
  * * Return a the first thing where the applied callback is truthey
  * The function MUST NOT use the find() method.
  */
-
+const data = [
+  { v: false, id: 1 },
+  { v: true, id: 2 },
+  { v: true, id: 3 },
+];
 
 export function find(array, callback) {
-  // Your code goes here...
-  
+  for (let i = 0; i < array.length; i++) {
+    if (callback(array[i], i, array)) {
+      return array[i];
+    }
+  }
+  return undefined; // like .find() does if nothing matches
 }
-
+console.log(find(data, (item) => item.v));
 
 // === TEST YOURSELF ===
 // Once you're finished run the test with "npm run test-16"

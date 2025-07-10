@@ -1,23 +1,58 @@
 /**
  * Make sure to read the e17.md file!
- * For this exercise we want you to make custom `maxBy` and `minBy` methods. 
- * In order to do this it is ok to use any type of FOR loops. 
+ * For this exercise we want you to make custom `maxBy` and `minBy` methods.
+ * In order to do this it is ok to use any type of FOR loops.
  * REQUIREMENTS: functions should:
  * * Take an array of things
  * * minBy(): Return the element where the callback function on that element yields the lowest value
  * * maxBy(): Return the element where the callback function on that element yields the highest value
  */
 
+const data = [
+  { name: "jon", age: 29 },
+  { name: "peter", age: 30 },
+  { name: "andrey", age: 22 },
+];
+
 export function minBy(array, cb) {
   // Your code goes here...
+  if (array.length === 0) return undefined;
 
+  let minItem = array[0];
+  let minValue = cb(array[0]);
+
+  for (let i = 1; i < array.length; i++) {
+    const currentValue = cb(array[i], i, array);
+    if (currentValue < minValue) {
+      minValue = currentValue;
+      minItem = array[i];
+    }
+  }
+
+  return minItem;
 }
+
+console.log(minBy(data, (person) => person.age));
 
 export function maxBy(array, cb) {
   // Your code goes here...
+  if (array.length === 0) return undefined;
 
+  let maxItem = array[0];
+  let maxValue = cb(array[0]);
+
+  for (let i = 1; i < array.length; i++) {
+    const currentValue = cb(array[i], i, array);
+    if (currentValue > maxValue) {
+      maxValue = currentValue;
+      maxItem = array[i];
+    }
+  }
+
+  return maxItem;
 }
 
+console.log(maxBy(data, (person) => person.age));
 
 // === TEST YOURSELF ===
 // Once you're finished run the test with "npm run test-17"

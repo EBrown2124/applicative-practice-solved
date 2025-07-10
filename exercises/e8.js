@@ -6,9 +6,21 @@ import { data } from "../data/data";
 
 export function findPlanetNameByMoon(data, moonName) {
   // Your code goes here...
+
+  const haveMoon = data.planets
+    .filter((planet) => {
+      if (Array.isArray(planet.moons)) {
+        for (let i = 0; i < planet.moons.length; i++) {
+          if (planet.moons[i] === moonName) {
+            return planet.moons[i];
+          }
+        }
+      }
+    })
+    .map((planet) => planet.name);
+  return `${haveMoon}`;
 }
-
-
+console.log(findPlanetNameByMoon(data, "Europe"));
 
 // === TEST YOURSELF ===
 // Once you're finished run the test with "npm run test-8"
